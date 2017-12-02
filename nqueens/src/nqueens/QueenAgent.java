@@ -20,7 +20,7 @@ import java.io.IOException;
 public class QueenAgent extends Agent {
      private int id, n;
     private boolean board[][];
-    private AID prevQueen;
+    private AID previousQueen;
     private AID nextQueen;
     private int solutions;
 
@@ -32,7 +32,7 @@ public class QueenAgent extends Agent {
         n = (int) args[1];
         solutions = 0;
         
-        prevQueen = new AID("Queen" + (id - 1), AID.ISLOCALNAME);
+        previousQueen = new AID("Queen" + (id - 1), AID.ISLOCALNAME);
         nextQueen = new AID("Queen" + (id + 1), AID.ISLOCALNAME);
         addBehaviour(new QueenBehaviour());
     }
@@ -57,6 +57,7 @@ public class QueenAgent extends Agent {
                         if (id != n - 1) { 
                             ACLMessage quitMsg = new ACLMessage(ACLMessage.CANCEL);
                             msg.addReceiver(nextQueen);
+                            //System.out.println(quitMsg);
                             }
                         done = true;
                         return;
@@ -95,7 +96,7 @@ public class QueenAgent extends Agent {
             else {
                 // Propose to move to next position
                 ACLMessage msg = new ACLMessage(ACLMessage.PROPOSE);
-                msg.addReceiver(prevQueen);
+                msg.addReceiver(previousQueen);
                 send(msg);
             }
         }

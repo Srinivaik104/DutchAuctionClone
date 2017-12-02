@@ -158,8 +158,8 @@ public class AuctionAgent extends Agent {
                                 .MatchPerformative(ACLMessage.PROPOSE);
                         ACLMessage msg = receive(mt);
                         if (msg!=null) {
-                            int proposal = Integer.parseInt(msg.getContent());
-                            if (proposal>bid) bid=proposal;
+                            int prop = Integer.parseInt(msg.getContent());
+                            if (prop>bid) bid=prop;
                             done = true;
                         }
                     }

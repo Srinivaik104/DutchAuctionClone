@@ -23,8 +23,8 @@ public class Participants extends Agent{
     private final int CLONES = 3;
     
     private boolean isClone = false;
-    final double[] strategy1 = {0.5, 0.7, 0.9};
-    final double[] strategy2 = {0.4, 0.6, 0.8};
+    final double[] strategy1 = {0.55, 0.57, 0.59, 0.75, 0.77, 0.79, 0.95, 0.97, 0.99};
+    final double[] strategy2 = {0.44, 0.46, 0.48, 0.64, 0.66, 0.68, 0.84, 0.86, 0.88};
     private boolean isInterested;
     private int price;
     private String museum;
@@ -91,14 +91,14 @@ public class Participants extends Agent{
             MessageTemplate mt = MessageTemplate.MatchPerformative(ACLMessage.CFP);
             ACLMessage msg = blockingReceive(mt);
             int offer = Integer.parseInt(msg.getContent());
-            int s1 = (int) (Math.random() * 3);
-            int s2 = (int) (Math.random() * 3);
+            int s1 = (int) (Math.random() * 9);
+            int s2 = (int) (Math.random() * 9);
             double e;
             String m = here().getName();
             if (m.equals("HM")) e = strategy1[s1]; 
             else e = strategy2[s2];
             price = (int) (offer * e);
-            isInterested = Math.random() < 0.5; // Random boolean
+            isInterested = Math.random() < 0.55; // Random boolean
             StringBuilder sb = new StringBuilder("");
             sb.append("Agent ").append(getAID().getLocalName());
             sb.append(" evaluated item to ").append(price).append(" and ");
